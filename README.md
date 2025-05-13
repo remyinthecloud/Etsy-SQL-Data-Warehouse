@@ -57,7 +57,7 @@ I created this project to sharpen my data engineering and analytical skills whil
 
 ## 📬 Let's Connect!
 
-| [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/remyinthecloud) | [![Website](https://img.shields.io/badge/Website-Visit-4B5563?style=for-the-badge&logo=google-chrome)](https://remyinthecloud.com) |
+| [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/remypauljr) | [![Website](https://img.shields.io/badge/Website-Visit-4B5563?style=for-the-badge&logo=google-chrome)](https://remyinthecloud.com) |
 | :-----------------------------------------------------------: | :-----------------------------------------------------------------: |
 
 ---
