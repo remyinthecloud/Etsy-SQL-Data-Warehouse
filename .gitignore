@@ -1,0 +1,42 @@
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore local configuration files
+*.env
+
+# PostgreSQL server data directory (never commit this)
+pgdata/
+postgresql.conf
+pg_hba.conf
+pg_ident.conf
+pg_log/
+pg_wal/
+pg_stat_tmp/
+pg_subtrans/
+pg_replslot/
+pg_snapshots/
+pg_tblspc/
+pg_twophase/
+pg_xact/
+pg_serial/
+pg_commit_ts/
+
+# Unix socket file (if using local connection)
+*.s.PGSQL.*
+
+# Dump files (optional, depending on your workflow)
+*.sql
+*.dump
+*.backup
+
+# Ignore temporary or backup files
+*.log
+*.bak
+*.tmp
+*.pid
+*.err
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
