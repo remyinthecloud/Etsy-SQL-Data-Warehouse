@@ -6,11 +6,17 @@ services:
     image: postgres
     restart: always
     environment:
-      POSTGRES_USER: ${POSTGRES_USER}
+      # User will be postgres by default
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
     volumes:
-      - pgdata:/var/lib/postgresql/data 
+      - pgdata:/var/lib/postgresql/data
+      # Mount the datasets directory to the container for bulk loading to Postgres
+      # Make sure to change the path to your local datasets directory
+      # ":/mnt/datasets" is telling the container to mount the datasets directory
+      # to /mnt/datasets in the container
+      - /home/tokyo/Etsy-SQL-Data-Warehouse/datasets/:/mnt/datasets
+
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -27,6 +33,9 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     depends_on:
       - db
+    volumes:
+      - pgadmindata:/var/lib/pgadmin
  
 volumes:
   pgdata:
+  pgadmindata:
