@@ -26,7 +26,6 @@ pg_commit_ts/
 *.s.PGSQL.*
 
 # Dump files (optional, depending on your workflow)
-*.sql
 *.dump
 *.backup
 
