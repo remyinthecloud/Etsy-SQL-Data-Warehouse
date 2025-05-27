@@ -3,7 +3,7 @@
 Thumbs.db
 
 # Ignore local configuration files
-*.env
+**/.env
 
 # PostgreSQL server data directory (never commit this)
 pgdata/
