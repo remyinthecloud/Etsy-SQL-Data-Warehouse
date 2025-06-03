@@ -70,13 +70,13 @@ WHERE prd_cost < 0 OR prd_cost IS NULL;
 -- Data Standardization & Consistency
 SELECT DISTINCT
     prd_line
-FROM silver.crm_prd_info
+FROM silver.crm_prd_info;
 
 -- Check for Invalid Date Orders
 SELECT
 *
 FROM silver.crm_prd_info
-WHERE prd_end_dt < prd_start_dt
+WHERE prd_end_dt < prd_start_dt;
 
 -- ====================================================================
 -- Checking 'silver.crm_sales_details'
@@ -84,12 +84,12 @@ WHERE prd_end_dt < prd_start_dt
 -- Check for Invalid Dates
 -- Expectation: No Invalid Dates
 SELECT
-    NULLIF(sls_order_dt, 0) AS sls_order_dt,
+    NULLIF(sls_due_dt, 0) AS sls_due_dt
 FROM bronze.crm_sales_details
-WHERE sls_order_dt <= 0
-OR LENGTH(sls_order_dt) != 8
-OR sls_order_dt > 20300101
-OR sls_order_dt < 19900101;
+WHERE sls_due_dt <= 0
+OR LENGTH(sls_due_dt::text) != 8
+OR sls_due_dt > 20300101
+OR sls_due_dt < 19900101;
 
 -- Check for Invalid Date Orders (Order Date > Shipping/Due Dates)
 -- Expectation: No Results
@@ -123,15 +123,45 @@ ORDER BY sls_sales, sls_quantity, sls_price;
 -- Expectation: Birthdates between 1924-01-01 and Today
 SELECT DISTINCT
     bdate
-FROM bronze.erp_cust_az12
-WHERE bdate < '1924-01-01' OR bdate > GETDATE()
+FROM silver.erp_cust_az12
+WHERE bdate < '1924-01-01' OR bdate > CURRENT_TIMESTAMP;
 
 -- Data Standardization & Consistency
 SELECT DISTINCT
     gen
-FROM bronze.erp_cust_az12
+FROM silver.erp_cust_az12;
 
 -- ====================================================================
 -- Checking 'silver.erp_loc_a101'
 -- ====================================================================
 -- Data Standardization & Consistency
+SELECT DISTINCT 
+    cntry 
+FROM silver.erp_loc_a101
+ORDER BY cntry;
+
+SELECT
+    REPLACE(cid, '-', '') AS cid
+FROM silver.erp_loc_a101;
+
+-- ====================================================================
+-- Checking 'silver.erp_px_cat_g1v2'
+-- ====================================================================
+-- Check for Unwanted Spaces
+-- Expectation: No Results
+SELECT
+    id,
+    cat,
+    subcat,
+    maintenance
+FROM silver.erp_px_cat_g1v2
+WHERE cat != TRIM(cat)
+OR subcat != TRIM(subcat)
+OR maintenance != TRIM(maintenance);
+
+-- Data Standardization & consistency
+SELECT DISTINCT
+    cat,
+    subcat,
+    maintenance
+FROM silver.erp_px_cat_g1v2;
