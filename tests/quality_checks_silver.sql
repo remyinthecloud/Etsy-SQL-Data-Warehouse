@@ -135,3 +135,33 @@ FROM bronze.erp_cust_az12
 -- Checking 'silver.erp_loc_a101'
 -- ====================================================================
 -- Data Standardization & Consistency
+SELECT DISTINCT 
+    cntry 
+FROM silver.erp_loc_a101
+ORDER BY cntry;
+
+SELECT
+    REPLACE(cid, '-', '') AS cid
+FROM bronze.erp_loc_a101
+
+-- ====================================================================
+-- Checking 'silver.erp_px_cat_g1v2'
+-- ====================================================================
+-- Check for Unwanted Spaces
+-- Expectation: No Results
+SELECT
+    id,
+    cat,
+    subcat,
+    maintenance
+FROM bronze.erp_px_cat_g1v2
+WHERE cat != TRIM(cat)
+OR subcat != TRIM(subcat)
+OR maintenance != TRIM(maintenance)
+
+-- Data Standardization & consistency
+SELECT DISTINCT
+    cat,
+    subcat,
+    maintenance
+FROM bronze.erp_px_cat_g1v2
