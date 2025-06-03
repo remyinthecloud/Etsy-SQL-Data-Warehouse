@@ -5,6 +5,7 @@
 */ 
 
 -- Final Query to insert cleaned data into silver layer
+
 INSERT INTO silver.crm_cust_info(
     cst_id,
     cst_key,
@@ -131,3 +132,34 @@ SELECT
         ELSE 'N/A'
     END AS gen -- Normalize gender values and handle unknown cases
 FROM bronze.erp_cust_az12
+
+-- Insert into silver.erp_loc_a101
+INSERT INTO silver.erp_loc_a101 (
+	cid,
+	cntry
+)
+
+SELECT DISTINCT
+    REPLACE(cid, '-', '') AS cid, -- Replace '-' in cid to stay consistent with format of cst_key in the crm_cust_info table
+    CASE
+        WHEN TRIM(cntry) IN ('US', 'USA') THEN 'United States'
+        WHEN TRIM(cntry) = 'DE' THEN 'Germany'
+        WHEN TRIM(cntry) = '' OR IS NULL THEN 'N/A'
+        ELSE TRIM(cntry)
+    END AS cntry -- Normalize and handle missing or blank country codes
+FROM bronze.erp_loc_a101
+
+-- Insert into silver.erp_px_cat_g1v2
+INSERT INTO silver.erp_px_cat_g1v2(
+	id,
+    cat,
+    subcat,
+    maintenance
+)
+
+SELECT
+	id,
+    cat,
+    subcat,
+    maintenance
+FROM bronze.erp_px_cat_g1v2
