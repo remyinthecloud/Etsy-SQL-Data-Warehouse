@@ -1,17 +1,36 @@
--- =============================================================================================================================
--- First we truncate the tables to remove any existing data
--- and then we load the data from the CSV files into the tables.
--- this is what we call full load
--- COPY has the fastest performance for loading data into tables so no need to use stored procedure (INSERT)
--- =============================================================================================================================
+/*
+===============================================================================
+Stored Procedure: Load Bronze Layer (Source -> Bronze)
+===============================================================================
+Script Purpose:
+    This stored procedure loads data into the 'bronze' schema from external CSV files. 
+    It performs the following actions:
+    - Truncates the bronze tables before loading data.
+    - Uses the `COPY` command to load data from csv Files to bronze tables.
+This is what we call full load.
 
-DO $$
+Parameters:
+    None. 
+	  This stored procedure does not accept any parameters or return any values.
+
+Usage Example:
+    CALL bronze.load_bronze_layer_data();
+===============================================================================
+*/
+
+CREATE OR REPLACE PROCEDURE bronze.load_bronze_layer_data()
+LANGUAGE plpgsql
+AS $$
 DECLARE
     load_start_time TIMESTAMP;
     full_load_time TIMESTAMP;
 
     start_time TIMESTAMP;
     end_time TIMESTAMP;
+
+    err_message TEXT;
+    err_detail TEXT;
+    err_hint TEXT;
 BEGIN
 
     load_start_time := CURRENT_TIMESTAMP;
@@ -146,9 +165,14 @@ BEGIN
 
 EXCEPTION
     WHEN OTHERS THEN
+    GET STACKED DIAGNOSTICS
+            err_message = MESSAGE_TEXT,
+            err_detail = PG_EXCEPTION_DETAIL,
+            err_hint = PG_EXCEPTION_HINT;
         RAISE NOTICE '==============================';
         RAISE NOTICE 'Error loading data into bronze layer: %', SQLERRM;
         RAISE NOTICE 'SQLSTATE: %', SQLSTATE;
+        RAISE NOTICE 'An error occurred: % - Detail: % - Hint: %', err_message, err_detail, err_hint; -- More Error Details like the line, etc.
         RAISE NOTICE '==============================';
 END
 $$;
