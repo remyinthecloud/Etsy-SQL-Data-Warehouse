@@ -1,70 +1,116 @@
-# 🧠 Welcome to My Data Warehouse Project
+# 🧠 Etsy SQL Data Warehouse Project
 
-Welcome to my data warehouse project focused on customer and sales data for a mock **Etsy-style shop**. This project demonstrates my ability to build a modern data warehouse using **PostgreSQL** (running in a **Docker container**), perform **ETL processes**, design a scalable **data model**, and develop insightful **analytics**. 
+Welcome to the **Etsy SQL Data Warehouse** – a modern end-to-end data engineering pipeline simulating ERP and CRM systems for a mock e-commerce platform.
 
-The data simulates **ERP** and **CRM** systems, providing a real-world scenario for integrating disparate sources into a unified warehouse to support data-driven decision-making.
+This project demonstrates the use of **Medallion Architecture** (Bronze → Silver → Gold), robust **ETL pipelines** with **PostgreSQL**, and quality validation at every layer. Version control is managed via **GitHub**, project planning is tracked in **Notion**, and architecture is documented with **Draw.io**.
 
 ---
 
-## 🚀 Project Requirements
+## 🎯 Project Goals
 
-### Building the Data Warehouse (Data Engineering)
-
-#### 🎯 Objective
-
-Develop a modern data warehouse using **PostgreSQL** (deployed via Docker) to consolidate sales data, enabling analytical reporting and informed decision-making.
-
-#### 📋 Specifications
-
-- **Data Sources**: Import data from two source systems (**ERP** and **CRM**) provided as CSV files.
-- **Data Quality**: Cleanse and resolve data quality issues prior to analysis.
-- **Integration**: Combine both sources into a single, user-friendly data model designed for analytical queries.
-- **Environment**: PostgreSQL database and **pgAdmin** running inside Docker containers for isolated, reproducible deployment.
-- **Scope**: Focus on the latest dataset only; historization of data is not required.
-- **Documentation**: Provide clear documentation of the data model to support both business stakeholders and analytics teams.
+- Build a modular and scalable **data warehouse** architecture.
+- Ingest raw CRM and ERP data from CSV files.
+- Apply structured transformations and cleaning across layered schemas.
+- Perform data quality checks at each transformation stage.
+- Deliver enriched, analytics-ready data models for BI and reporting.
+- Document the architecture, data model, and flow visually for stakeholders.
+- Track progress, tickets, and enhancements using **Notion**.
 
 ---
 
 ## 🧰 Tools & Technologies
 
-- **PostgreSQL** — Primary data warehouse database.
-- **Docker** — Containerized deployment for PostgreSQL and pgAdmin.
-- **pgAdmin** — Browser-based UI for managing the PostgreSQL instance, running in its own Docker container.
-- **SQL** — Data transformations and analytics.
-- **CSV Files** — Source system exports (ERP and CRM).
+| Tool / Tech         | Purpose                                               |
+|---------------------|--------------------------------------------------------|
+| **PostgreSQL**       | Core data warehouse engine                             |
+| **Docker**           | Containerized environment for PostgreSQL & pgAdmin     |
+| **pgAdmin**          | Web-based UI for managing PostgreSQL                   |
+| **SQL**              | Data transformation, ingestion, and analysis           |
+| **CSV Files**        | Simulated CRM and ERP source data                      |
+| **GitHub**           | Version control for SQL scripts, documentation, and ETL|
+| **Draw.io**          | Visuals for architecture, data flow, and schema design |
+| **Notion**           | Task and project tracking, documentation hub           |
+| **Tableau / Power BI** | BI tools for creating dashboards and final reports    |
 
 ---
 
-## 📊 BI: Analytics & Reporting (Data Analysis)
+## 🗂️ Medallion Architecture
 
-#### 🎯 Objective
+This project follows a **three-tiered Medallion Architecture** for structured data refinement:
 
-Develop **SQL-based analytics** to deliver detailed insights into:
+### 🥉 Bronze Layer – Raw Ingestion
 
-- 📊 **Customer Behavior**
-- 🛍️ **Product Performance**
-- 📈 **Sales Trends**
+**Purpose:**  
+Load unmodified CRM and ERP CSV data into the data warehouse for traceability and reproducibility.
 
-These insights empower stakeholders with key business metrics, enabling strategic decision-making.
-
-> 📄 For more details, refer to [`docs/requirements.md`](docs/requirements.md)
+- Raw ingestion from persistent Docker volumes.
+- Stored procedures using `COPY` for performance.
+- Column types and formats preserved as-is.
 
 ---
 
-## 🖥️ Accessing the Warehouse with pgAdmin
+### 🥈 Silver Layer – Clean & Standardized Data
 
-pgAdmin is included in this project as a Docker service to easily connect and manage the PostgreSQL instance.
+**Purpose:**  
+Transform raw data into consistent, structured formats for business use.
 
-Once your Docker containers are running, follow these steps:
+- Normalize fields (e.g., casing, categories).
+- Handle missing values and blanks.
+- Standardize date and string formats.
+- De-duplicate records.
+- Perform logical validations across columns.
 
-1. Open your browser and go to: `http://localhost:5050`
-2. Log in with the default pgAdmin credentials (set in `docker-compose.yml`).
-3. Add a new server:
-   - **Host**: `postgres`
-   - **Port**: `5432`
-   - **Username**: `postgres`
-   - **Password**: (set in `.env` or `docker-compose.yml`)
-4. Explore and manage your data warehouse, run SQL queries, and monitor your data model.
+**Quality Checks Include:**
+- Duplicate or null primary keys
+- Invalid date ranges (e.g., delivery before order)
+- Cross-field consistency
+- String format validations (e.g., no leading/trailing spaces)
+
+---
+
+### 🥇 Gold Layer – Business-Ready Analytics
+
+**Purpose:**  
+Generate a clean, enriched **star schema** optimized for analytics and BI tools.
+
+- Dimension and fact tables with clear relationships.
+- Surrogate keys introduced where needed.
+- Designed to support self-service analytics and dashboards.
+
+**Quality Checks Include:**
+- Uniqueness of keys
+- Referential integrity between tables
+- Logical consistency for analytical use cases
+
+---
+
+## 🗃️ Documentation & Workflow Management
+
+- **Version Control:**  
+  All scripts, configurations, and documentation are tracked using **GitHub**, enabling team collaboration and rollback capabilities.
+
+- **Project Management:**  
+  The entire development lifecycle, including backlog grooming, active tasks, bug tracking, and delivery checkpoints, is managed using **Notion**.
+
+- **System Design Diagrams:**  
+  Architectural flowcharts, data integration diagrams, and schema visuals are created using **Draw.io** and stored in the `docs/` folder for clarity and onboarding.
+
+---
+
+## 📊 Final Output
+
+The final **Gold Layer** data is designed for seamless integration with BI tools like **Tableau** or **Power BI** to produce:
+
+- 📈 Sales performance dashboards  
+- 🛍️ Product and category insights  
+- 👥 Customer behavior metrics  
+- 🧩 Trend and KPI visualizations  
+
+---
+
+## 📎 Additional Resources
+
+For detailed transformation logic, source-to-target mapping, and quality check logic, refer to documentation in the `docs/` folder.
 
 ---
 
