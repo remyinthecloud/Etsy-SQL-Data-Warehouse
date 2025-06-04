@@ -1,8 +1,8 @@
 # 🧠 Etsy SQL Data Warehouse Project
 
-Welcome to the **Etsy SQL Data Warehouse** – a modern end-to-end data engineering pipeline simulating ERP and CRM systems for a mock e-commerce platform.
+Welcome to my end-to-end data warehouse project focused on simulating customer and sales data for a mock Etsy-style shop. This initiative demonstrates the principles of modern data engineering using a **Medallion Architecture** (Bronze, Silver, Gold), robust **ETL pipelines** with **PostgreSQL** running in **Docker**, and includes best practices in data ingestion, transformation, quality validation, and reporting. Version control is managed via **GitHub**, project planning is tracked in **Notion**, and architecture is documented with **Draw.io**.
 
-This project demonstrates the use of **Medallion Architecture** (Bronze → Silver → Gold), robust **ETL pipelines** with **PostgreSQL**, and quality validation at every layer. Version control is managed via **GitHub**, project planning is tracked in **Notion**, and architecture is documented with **Draw.io**.
+The dataset mimics real-world **CRM** and **ERP** sources delivered as CSV files, and the project showcases how to integrate disparate data sources into a single warehouse optimized for analysis and stakeholder reporting.
 
 ---
 
