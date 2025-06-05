@@ -17,12 +17,12 @@ Parameters:
 	  This stored procedure does not accept any parameters or return any values.
 
 Usage Example:
-    CALL silver.load_silver_layer_data();
+    CALL silver.load_silver();
 ===============================================================================
 */
 
 -- Create Stored Procedure
-CREATE OR REPLACE PROCEDURE silver.load_silver_layer_data()
+CREATE OR REPLACE PROCEDURE silver.load_silver()
 LANGUAGE plpgsql
 AS $$
 DECLARE
