@@ -51,9 +51,9 @@
 
 ## Stored Procedure
 - All stored procedures used for loading data must follow the naming pattern:
-- ```load_<layer>```.
+- ```load_<layer()>```.
     -   ```layer```: Represents the later being loaded, such as ```bronze```, ```silver```, or ```gold```.
     - Example: 
-        - ```load_bronze``` -> Stored procedure for loading data into the Bronze layer.
-        - ```load_silver``` -> Stored procedure for loading data into the Silver layer.
-        - ```load_gold``` -> Stored procedure for loading data into the Gold layer.
+        - ```load_bronze()``` -> Stored procedure for loading data into the Bronze layer.
+        - ```load_silver()``` -> Stored procedure for loading data into the Silver layer.
+        - ```load_gold()``` -> Stored procedure for loading data into the Gold layer.

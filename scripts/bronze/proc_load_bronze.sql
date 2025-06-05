@@ -14,11 +14,11 @@ Parameters:
 	  This stored procedure does not accept any parameters or return any values.
 
 Usage Example:
-    CALL bronze.load_bronze_layer_data();
+    CALL bronze.load_bronze();
 ===============================================================================
 */
 
-CREATE OR REPLACE PROCEDURE bronze.load_bronze_layer_data()
+CREATE OR REPLACE PROCEDURE bronze.load_bronze()
 LANGUAGE plpgsql
 AS $$
 DECLARE
