@@ -1,4 +1,4 @@
-# 🧠 Etsy SQL Data Warehouse Project
+# Etsy SQL Data Warehouse Project
 
 Welcome to my end-to-end data warehouse project focused on simulating customer and sales data for a mock Etsy-style shop. This initiative demonstrates the principles of modern data engineering using a **Medallion Architecture** (Bronze, Silver, Gold), robust **ETL pipelines** with **PostgreSQL** running in **Docker**, and includes best practices in data ingestion, transformation, quality validation, and reporting. Version control is managed via **GitHub**, project planning is tracked in **Notion**, and architecture is documented with **Draw.io**.
 
@@ -6,7 +6,7 @@ The dataset mimics real-world **CRM** and **ERP** sources delivered as CSV files
 
 ---
 
-## 🎯 Project Goals
+## Project Goals
 
 - Build a modular and scalable **data warehouse** architecture.
 - Ingest raw CRM and ERP data from CSV files.
@@ -18,7 +18,7 @@ The dataset mimics real-world **CRM** and **ERP** sources delivered as CSV files
 
 ---
 
-## 🧰 Tools & Technologies
+## Tools & Technologies
 
 | Tool / Tech         | Purpose                                               |
 |---------------------|--------------------------------------------------------|
@@ -34,7 +34,7 @@ The dataset mimics real-world **CRM** and **ERP** sources delivered as CSV files
 
 ---
 
-## 🗂️ Medallion Architecture
+## Medallion Architecture
 
 This project follows a **three-tiered Medallion Architecture** for structured data refinement:
 
@@ -84,7 +84,7 @@ Generate a clean, enriched **star schema** optimized for analytics and BI tools.
 
 ---
 
-## 🗃️ Documentation & Workflow Management
+## Documentation & Workflow Management
 
 - **Version Control:**  
   All scripts, configurations, and documentation are tracked using **GitHub**, enabling team collaboration and rollback capabilities.
@@ -97,7 +97,7 @@ Generate a clean, enriched **star schema** optimized for analytics and BI tools.
 
 ---
 
-## 📊 Final Output
+## Final Output
 
 The final **Gold Layer** data is designed for seamless integration with BI tools like **Tableau** or **Power BI** to produce:
 
