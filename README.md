@@ -136,4 +136,13 @@ This project is a hands-on example of how I approach data engineering and analys
 
 ---
 
+## Source
+
+Credits to DataWithBara. I started this project as the last section in Bara's 30 comprehensive SQL course.
+While I remixed Bara's original project to make it more like mine and learn how to use different tools
+to achieve the same result, to further my core understanding of the Warehousing , DBM, and creating a pipeline.
+Bara has been an extremely cruial resource and guide to this project.
+
+---
+
 Thanks for stopping by and exploring this project!
